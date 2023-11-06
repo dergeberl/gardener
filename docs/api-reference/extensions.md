@@ -3342,6 +3342,8 @@ be statically defined in the Shoot resource but must be computed dynamically.</p
 </em>
 </td>
 <td>
+<p>EgressCIDRs contains the list of worker nodes egress CIDRs that were optionally created by the acting extension controller.
+These might be needed for creating ACLs or firewall rules based on external source ip addresses of the worker nodes.</p>
 </td>
 </tr>
 </tbody>

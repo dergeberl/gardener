@@ -139,6 +139,10 @@ spec:
                   type: object
                 type: array
               egressCIDRs:
+                description: EgressCIDRs contains the list of worker nodes egress
+                  CIDRs that were optionally created by the acting extension controller.
+                  These might be needed for creating ACLs or firewall rules based
+                  on external source ip addresses of the worker nodes.
                 items:
                   type: string
                 type: array

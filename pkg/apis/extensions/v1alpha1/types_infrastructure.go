@@ -88,6 +88,8 @@ type InfrastructureStatus struct {
 	// This might be needed in environments in which the CIDR for the network for the shoot worker node cannot
 	// be statically defined in the Shoot resource but must be computed dynamically.
 	// +optional
-	NodesCIDR   *string  `json:"nodesCIDR,omitempty"`
+	NodesCIDR *string `json:"nodesCIDR,omitempty"`
+	// EgressCIDRs contains the list of worker nodes egress CIDRs that were optionally created by the acting extension controller.
+	// These might be needed for creating ACLs or firewall rules based on external source ip addresses of the worker nodes.
 	EgressCIDRs []string `json:"egressCIDRs,omitempty"`
 }
