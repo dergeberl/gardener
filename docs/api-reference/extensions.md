@@ -3334,6 +3334,16 @@ This might be needed in environments in which the CIDR for the network for the s
 be statically defined in the Shoot resource but must be computed dynamically.</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>egressCIDRs</code></br>
+<em>
+[]string
+</em>
+</td>
+<td>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="extensions.gardener.cloud/v1alpha1.MachineDeployment">MachineDeployment

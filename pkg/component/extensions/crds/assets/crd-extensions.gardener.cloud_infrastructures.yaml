@@ -140,6 +140,10 @@ spec:
                   - type
                   type: object
                 type: array
+              egressCIDRs:
+                items:
+                  type: string
+                type: array
               lastError:
                 description: LastError holds information about the last occurred error
                   during an operation.

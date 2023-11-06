@@ -88,5 +88,6 @@ type InfrastructureStatus struct {
 	// This might be needed in environments in which the CIDR for the network for the shoot worker node cannot
 	// be statically defined in the Shoot resource but must be computed dynamically.
 	// +optional
-	NodesCIDR *string `json:"nodesCIDR,omitempty"`
+	NodesCIDR   *string  `json:"nodesCIDR,omitempty"`
+	EgressCIDRs []string `json:"egressCIDRs,omitempty"`
 }

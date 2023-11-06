@@ -116,6 +116,7 @@ type infrastructure struct {
 	infrastructure *extensionsv1alpha1.Infrastructure
 	providerStatus *runtime.RawExtension
 	nodesCIDR      *string
+	egressCIDRs    []string
 }
 
 // Deploy uses the seed client to create or update the Infrastructure resource.
@@ -254,9 +255,15 @@ func (i *infrastructure) NodesCIDR() *string {
 	return i.nodesCIDR
 }
 
+// EgressCIDRs returns the generated nodes CIDR of the provider.
+func (i *infrastructure) EgressCIDRs() []string {
+	return i.egressCIDRs
+}
+
 func (i *infrastructure) extractStatus(status extensionsv1alpha1.InfrastructureStatus) {
 	i.providerStatus = status.ProviderStatus
 	i.nodesCIDR = status.NodesCIDR
+	i.egressCIDRs = status.EgressCIDRs
 }
 
 func (i *infrastructure) lastOperationNotSuccessful() bool {
