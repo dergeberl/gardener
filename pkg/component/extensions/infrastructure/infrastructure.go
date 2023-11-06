@@ -56,6 +56,8 @@ type Interface interface {
 	ProviderStatus() *runtime.RawExtension
 	// NodesCIDR returns the generated nodes CIDR of the provider.
 	NodesCIDR() *string
+	// EgressCIDRs returns the generated nodes CIDR of the provider.
+	EgressCIDRs() []string
 }
 
 // Values contains the values used to create an Infrastructure resources.
