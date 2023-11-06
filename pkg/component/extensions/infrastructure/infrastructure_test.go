@@ -69,6 +69,7 @@ var _ = Describe("#Interface", func() {
 		providerConfig *runtime.RawExtension
 		providerStatus *runtime.RawExtension
 		nodesCIDR      *string
+		egressCIDRs    []string
 
 		empty, expected *extensionsv1alpha1.Infrastructure
 		values          *infrastructure.Values
@@ -95,6 +96,7 @@ var _ = Describe("#Interface", func() {
 		providerConfig = &runtime.RawExtension{Raw: []byte(`{"very":"provider-specific"}`)}
 		providerStatus = &runtime.RawExtension{Raw: []byte(`{"very":"provider-specific-status"}`)}
 		nodesCIDR = pointer.String("1.2.3.4/5")
+		egressCIDRs = []string{"192.168.2.1/32", "192.168.3.0/24"}
 
 		values = &infrastructure.Values{
 			Namespace:      namespace,
@@ -331,6 +333,7 @@ var _ = Describe("#Interface", func() {
 				LastUpdateTime: metav1.Time{Time: now.UTC().Add(time.Second)},
 			}
 			expected.Status.NodesCIDR = nodesCIDR
+			expected.Status.EgressCIDRs = egressCIDRs
 			expected.Status.ProviderStatus = providerStatus
 			Expect(c.Patch(ctx, expected, patch)).To(Succeed(), "patching infrastructure succeeds")
 
@@ -340,6 +343,7 @@ var _ = Describe("#Interface", func() {
 			By("Verify status")
 			Expect(deployWaiter.ProviderStatus()).To(Equal(providerStatus))
 			Expect(deployWaiter.NodesCIDR()).To(Equal(nodesCIDR))
+			Expect(deployWaiter.EgressCIDRs()).To(ConsistOf(egressCIDRs))
 		})
 
 		It("should return no error when is ready (AnnotateOperation == false)", func() {
